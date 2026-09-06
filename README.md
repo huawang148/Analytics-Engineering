@@ -1,6 +1,3 @@
-# Analytics-Engineering
-Analytics Engineering related projects and resources
-
 # 🚀 Analytics Engineer (AE) AI 时代极简学习指南
 
 > **定位**：低精力、高杠杆、避开复杂运维与高压 On-Call 的 FIRE 防御型主业路线。
@@ -13,7 +10,15 @@ Analytics Engineering related projects and resources
 AI 时代，写 SQL 和 YAML 配置的边际成本趋近于零，但以下 3 项决策性技能是 AE 的顶级护城河：
 
 1. **业务指标对齐与口径治理 (Metrics Governance & Semantic Layer)**
-   - **核心价值**：消除部门间口径撕扯，将模糊业务需求转化为统一语义模型 (dbt Semantic Layer/MetricFlow)，确保 AI 和人类看到的指标完全一致。
+   - **核心价值**：AI 可以写出完美无瑕的 SQL，但它不知道你的公司“到底该怎么算钱”。将现实中模糊、混乱的业务口径，转化为精确、无二义性的数据模型，是 AE 最大的护城河。
+
+重点学习与掌握：
+
+定义“单一事实来源（Single Source of Truth）”：例如业务部门争论“客户留存率”到底是按 30 天自然日算，还是按自然月算？AE 需要协调并把最终口径固化到数据层。
+
+语义层设计（Semantic Layer / Metric Layer）：学习如何使用 dbt Semantic Layer 或 MetricFlow 定义统一的指标（Metrics），让上游 BI 和 AI 智能体（Data Agents）调用数据时不会产生歧义。
+
+数据溯源（Lineage）与边界认知：知道数据源头（如 Stripe 支付、Salesforce CRM、App 埋点）的各种奇葩异常（如退款导致负数、时区漂移），并提前在模型中做清洗。
 2. **事实与维度的概念抽象 (Kimball Dimensional Modeling)**
    - **核心价值**：定义数据表的“颗粒度 (Grain)”，设计高解耦的星型模型，防止数据倾斜与笛卡尔积膨胀，为 AI 提效打下高质量底层结构。
 3. **数据链路安全与成本/性能干预 (FinOps & Data Observability)**
