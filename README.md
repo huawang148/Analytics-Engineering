@@ -21,9 +21,16 @@ AI 时代，写 SQL 和 YAML 配置的边际成本趋近于零，但以下 3 项
 数据溯源（Lineage）与边界认知：知道数据源头（如 Stripe 支付、Salesforce CRM、App 埋点）的各种奇葩异常（如退款导致负数、时区漂移），并提前在模型中做清洗。
 2. **事实与维度的概念抽象 (Kimball Dimensional Modeling)**
    - **核心价值**：定义数据表的“颗粒度 (Grain)”，设计高解耦的星型模型，防止数据倾斜与笛卡尔积膨胀，为 AI 提效打下高质量底层结构。
+   - 重点学习与掌握：经典 Kimball 维度建模：精通事实表（Fact Tables）与维度表（Dimension Tables）的设计，理解退化维、渐变维（SCD Type 1/2/3）的应用场景。这是数据仓库不变成“乱葬岗”的底层理论。分层架构设计（Medallion Architecture / Staging-Intermediate-Marts）：知道如何把原始数据干净地分层（Raw $\rightarrow$ Staging $\rightarrow$ Intermediate $\rightarrow$ Marts），确保中间层模型可以被极大复用。云数仓成本与性能调优：理解增量模型（Incremental Models）、分区（Partitioning）、聚簇（Clustering）以及虚拟仓库（Warehouse Size）的配置，用最少的计算资源跑完数据（这对公司来说是实打实的省钱）。
 3. **数据链路安全与成本/性能干预 (FinOps & Data Observability)**
    - **核心价值**：优化云数仓计算成本（增量更新、分区），设计断路器测试防止脏数据污染下游，管控敏感数据权限（RLS/CLS）。
+重点学习与掌握：
 
+数据测试哲学（Data Testing）：熟练在 dbt 中编写 unique, not_null, relationships 以及断言测试（Singular Tests），确保上游数据异常时能自动拦截并报警。
+
+AI 提示词工程与代码审查（AI Prompting & Code Review）：学会如何向 Cursor 或 Claude 提供足够的 Schema 和业务上下文，让 AI 帮你写出符合团队规范的 SQL，并能快速一眼看出 AI 生成的代码里存在的逻辑漏洞（如少写了 GROUP BY 导致的数据膨胀/Cartesian Product）。
+
+数据安全与权限（RBAC & PII Masking）：理解敏感数据（如用户邮箱、电话）的脱敏与访问控制。
 ---
 
 ## 一、 技能图谱：重点 vs 交给 AI
