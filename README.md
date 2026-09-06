@@ -14,14 +14,16 @@ AI 时代，写 SQL 和 YAML 配置的边际成本趋近于零，但以下 3 项
 
    - 重点学习与掌握：
 
-定义“单一事实来源（Single Source of Truth）”：例如业务部门争论“客户留存率”到底是按 30 天自然日算，还是按自然月算？AE 需要协调并把最终口径固化到数据层。
+   定义“单一事实来源（Single Source of Truth）”：例如业务部门争论“客户留存率”到底是按 30 天自然日算，还是按自然月算？AE 需要协调并把最终口径固化到数据层。
+   
+   语义层设计（Semantic Layer / Metric Layer）：学习如何使用 dbt Semantic Layer 或 MetricFlow 定义统一的指标（Metrics），让上游 BI 和 AI 智能体（Data Agents）调用数据时不会产生歧义。
+   
+   数据溯源（Lineage）与边界认知：知道数据源头（如 Stripe 支付、Salesforce CRM、App 埋点）的各种奇葩异常（如退款导致负数、时区漂移），并提前在模型中做清洗。
 
-语义层设计（Semantic Layer / Metric Layer）：学习如何使用 dbt Semantic Layer 或 MetricFlow 定义统一的指标（Metrics），让上游 BI 和 AI 智能体（Data Agents）调用数据时不会产生歧义。
-
-数据溯源（Lineage）与边界认知：知道数据源头（如 Stripe 支付、Salesforce CRM、App 埋点）的各种奇葩异常（如退款导致负数、时区漂移），并提前在模型中做清洗。
 2. **事实与维度的概念抽象 (Kimball Dimensional Modeling)**
    - **核心价值**：定义数据表的“颗粒度 (Grain)”，设计高解耦的星型模型，防止数据倾斜与笛卡尔积膨胀，为 AI 提效打下高质量底层结构。
    - 重点学习与掌握：经典 Kimball 维度建模：精通事实表（Fact Tables）与维度表（Dimension Tables）的设计，理解退化维、渐变维（SCD Type 1/2/3）的应用场景。这是数据仓库不变成“乱葬岗”的底层理论。分层架构设计（Medallion Architecture / Staging-Intermediate-Marts）：知道如何把原始数据干净地分层（Raw $\rightarrow$ Staging $\rightarrow$ Intermediate $\rightarrow$ Marts），确保中间层模型可以被极大复用。云数仓成本与性能调优：理解增量模型（Incremental Models）、分区（Partitioning）、聚簇（Clustering）以及虚拟仓库（Warehouse Size）的配置，用最少的计算资源跑完数据（这对公司来说是实打实的省钱）。
+   
 3. **数据链路安全与成本/性能干预 (FinOps & Data Observability)**
    - **核心价值**：优化云数仓计算成本（增量更新、分区），设计断路器测试防止脏数据污染下游，管控敏感数据权限（RLS/CLS）。
    - 重点学习与掌握：
